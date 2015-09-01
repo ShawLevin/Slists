@@ -1,0 +1,48 @@
+<section data-ng-controller="StructuresController">
+	<div class="page-header">
+		<h1>New List</h1>
+	</div>
+	<div class="col-md-12">
+		<form name="structureForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+			<fieldset>
+				<div class="form-group" ng-class="{ 'has-error': structureForm.title.$dirty && structureForm.title.$invalid }">
+					<label class="control-label" for="title">Title</label>
+					<div class="controls">
+						<input name="title" style="margin-bottom:5px" type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title" required>
+						<label class="control-label" for="organization">Organization</label>
+						<input name="organization" style="margin-bottom:5px"  type="text" ng-model="org" id="organization" class="form-control" placeholder="Organization" required>
+						Private: <input name="privacy" type="checkbox" ng-model="private">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="content">Columns</label>
+					<input type="button" value="Add" ng-click="addColumn()">
+					<br/><br/>
+					<div class="controls">
+						<div ng-repeat="col in cols">
+						<input name="colName" type="text" ng-model='col.title' placeholder="Column Name" required>
+						<select name="colCategory" ng-model='col.category' required>
+							<option value="text">Text</option>
+							<option value="number">Number</option>
+							<option value="picture">Picture</option>
+							<option value="checkbox">Checkbox</option>
+							<option value="date">Date</option>
+							<option value="datetime">Date and Time</option>
+							<option value="address">Address</option>
+							<option value="link">Link</option>
+							<option value="pay">Pay</option>
+						</select>
+						</div>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-default">
+				</div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</section>
